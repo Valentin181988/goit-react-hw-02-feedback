@@ -2,11 +2,13 @@ import './App.css';
 import React, { Component } from 'react';
 import { FeedbackOptions } from './Components/FeedbackOptions';
 import { Statistics } from './Components/Statistics';
+import { Notification } from './Components/Notification';
 class App extends Component {
   state = {
     good: 0,
     neutral: 0,
-    bad: 0
+    bad: 0,
+    visible: false,
   };
 
   handleLiveFeedback = (value) => {
@@ -28,26 +30,9 @@ class App extends Component {
         bad: prevState.bad + 1,
      }));
     }
-    
+
+    this.showNotification();
   };
-
-  /* handleIncrementGood = () => {
-      this.setState(prevState => ({
-        good: prevState.good + 1,
-      }));
-  };
-
-  handleIncrementNeutral = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-};
-
-  handleIncrementBad = () => {
-    this.setState(prevState => ({
-       bad: prevState.bad + 1,
-    }));
-  }; */
 
   countTotalFeedback = () => {
       return this.state.good + this.state.neutral + this.state.bad
@@ -65,19 +50,29 @@ class App extends Component {
     return Math.trunc((this.state.good / (this.state.neutral + this.state.bad + this.state.good)) * 100);      
   };
 
+  showNotification = () => {
+    this.setState(prevState => ({
+      visible: true,
+    }))
+  };
+
   render() {
+    const { visible } = this.state;
         
     return (
         <>
           <h2>Please leave feedback</h2>
           <FeedbackOptions
             onLiveFeedback={this.handleLiveFeedback} />
-          <Statistics 
-            good={this.state.good} 
-            neutral={this.state.neutral} 
-            bad={this.state.bad} 
-            total={this.countTotalFeedback()}
-            positivePercent={this.countPositiveFeedbackPercentage()} />
+
+            {visible ? (
+              <Statistics 
+              good={this.state.good} 
+              neutral={this.state.neutral} 
+              bad={this.state.bad} 
+              total={this.countTotalFeedback()}
+              positivePercent={this.countPositiveFeedbackPercentage()} />
+            ) : (<Notification message="There is no feedback" />)} 
         </>
     );
   };
