@@ -1,10 +1,9 @@
-export const FeedbackOptions = ({onIncrementGood, onIncrementNeutral, onIncrementBad, onCountTotalFeedback, onCountPositiveFeedbackPercentage}) => {
+export const FeedbackOptions = ({onLiveFeedback}) => {
     return(
         <div>
-            <button onClick={onIncrementGood}>Good</button>
-            <button onClick={onIncrementNeutral}>Neutral</button>
-            <button onClick={onIncrementBad}>Bad</button>
-            <button onClick={onCountPositiveFeedbackPercentage}>Percent</button>
+            <button onClick={() => onLiveFeedback('good')}>Good</button>
+            <button onClick={() => onLiveFeedback('neutral')}>Neutral</button>
+            <button onClick={() => onLiveFeedback('bad')}>Bad</button>
         </div>
     );
 }
