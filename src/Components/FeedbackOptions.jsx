@@ -1,4 +1,4 @@
-export const Controls = ({onIncrementGood, onIncrementNeutral, onIncrementBad}) => {
+export const FeedbackOptions = ({onIncrementGood, onIncrementNeutral, onIncrementBad}) => {
     return(
         <div>
             <button onClick={onIncrementGood}>Good</button>
@@ -6,4 +6,4 @@ export const Controls = ({onIncrementGood, onIncrementNeutral, onIncrementBad}) 
             <button onClick={onIncrementBad}>Bad</button>
         </div>
     );
-};
+}
