@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { FeedbackButtons } from "./FeedbackOptions.styled";
 
 export const FeedbackOptions = ({onLiveFeedback}) => {
@@ -8,4 +9,8 @@ export const FeedbackOptions = ({onLiveFeedback}) => {
             <FeedbackButtons type="button" onClick={() => onLiveFeedback('bad')}>Bad</FeedbackButtons>
         </div>
     );
+};
+
+FeedbackOptions.propTypes = {
+    onLiveFeedback: PropTypes.func,
 }
