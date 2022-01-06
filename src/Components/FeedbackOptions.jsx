@@ -1,9 +1,11 @@
+import { FeedbackButtons } from "./FeedbackOptions.styled";
+
 export const FeedbackOptions = ({onLiveFeedback}) => {
     return(
         <div>
-            <button type="button" onClick={() => onLiveFeedback('good')}>Good</button>
-            <button type="button" onClick={() => onLiveFeedback('neutral')}>Neutral</button>
-            <button type="button" onClick={() => onLiveFeedback('bad')}>Bad</button>
+            <FeedbackButtons type="button" onClick={() => onLiveFeedback('good')}>Good</FeedbackButtons>
+            <FeedbackButtons type="button" onClick={() => onLiveFeedback('neutral')}>Neutral</FeedbackButtons>
+            <FeedbackButtons type="button" onClick={() => onLiveFeedback('bad')}>Bad</FeedbackButtons>
         </div>
     );
 }
