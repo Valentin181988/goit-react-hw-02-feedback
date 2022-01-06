@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { FeedbackOptions } from './Components/FeedbackOptions';
 import { Statistics } from './Components/Statistics';
 import { Notification } from './Components/Notification';
+import { Section } from './Components/Section';
 class App extends Component {
   state = {
     good: 0,
@@ -61,7 +62,7 @@ class App extends Component {
         
     return (
         <>
-          <h2>Please leave feedback</h2>
+          <Section title="Please leave feedback" good={this.state.good}>
           <FeedbackOptions
             onLiveFeedback={this.handleLiveFeedback} />
 
@@ -73,6 +74,8 @@ class App extends Component {
               total={this.countTotalFeedback()}
               positivePercent={this.countPositiveFeedbackPercentage()} />
             ) : (<Notification message="There is no feedback" />)} 
+
+          </ Section>
         </>
     );
   };
