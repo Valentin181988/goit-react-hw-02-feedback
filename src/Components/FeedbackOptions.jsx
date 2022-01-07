@@ -1,16 +1,16 @@
 import PropTypes from "prop-types";
 import { FeedbackButtons } from "./FeedbackOptions.styled";
 
-export const FeedbackOptions = ({onLiveFeedback}) => {
+export const FeedbackOptions = ({options, onLiveFeedback}) => {
+    
     return(
         <div>
-            <FeedbackButtons type="button" onClick={() => onLiveFeedback('good')}>Good</FeedbackButtons>
-            <FeedbackButtons type="button" onClick={() => onLiveFeedback('neutral')}>Neutral</FeedbackButtons>
-            <FeedbackButtons type="button" onClick={() => onLiveFeedback('bad')}>Bad</FeedbackButtons>
+            {options.map(option => <FeedbackButtons key={option} type="button" onClick={() => onLiveFeedback(option)}>{option}</FeedbackButtons>)}
         </div>
     );
 };
 
 FeedbackOptions.propTypes = {
     onLiveFeedback: PropTypes.func,
+    options: PropTypes.array,
 }

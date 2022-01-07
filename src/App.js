@@ -64,6 +64,7 @@ class App extends Component {
         <>
           <Section title="Please leave feedback" good={this.state.good}>
           <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
             onLiveFeedback={this.handleLiveFeedback} />
 
             {visible ? (
