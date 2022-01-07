@@ -36,19 +36,22 @@ class App extends Component {
   };
 
   countTotalFeedback = () => {
-      return this.state.good + this.state.neutral + this.state.bad
+    const { good, neutral, bad } = this.state;
+      return good + neutral + bad
   };
 
   countPositiveFeedbackPercentage = () => {
-    if (this.state.good === 0) {
+    const { good, neutral, bad } = this.state;
+
+    if (good === 0) {
       return 0;
     };
 
-    if (this.state.neutral === 0 && this.state.bad === 0) {
+    if (neutral === 0 && bad === 0) {
       return 100;
     };
 
-    return Math.trunc((this.state.good / (this.state.neutral + this.state.bad + this.state.good)) * 100);      
+    return Math.trunc((good / (neutral + bad + good)) * 100);      
   };
 
   showNotification = () => {
@@ -59,19 +62,20 @@ class App extends Component {
 
   render() {
     const { visible } = this.state;
+    const { good, neutral, bad } = this.state;
         
     return (
         <>
-          <Section title="Please leave feedback" good={this.state.good}>
+          <Section title="Please leave feedback" good={good}>
           <FeedbackOptions
             options={['good', 'neutral', 'bad']}
             onLiveFeedback={this.handleLiveFeedback} />
 
             {visible ? (
               <Statistics 
-              good={this.state.good} 
-              neutral={this.state.neutral} 
-              bad={this.state.bad} 
+              good={good} 
+              neutral={neutral} 
+              bad={bad} 
               total={this.countTotalFeedback()}
               positivePercent={this.countPositiveFeedbackPercentage()} />
             ) : (<Notification message="There is no feedback" />)} 
